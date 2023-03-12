@@ -15,6 +15,7 @@ public class _03_Assertions extends _04_Playwright_Runner{
         page.navigate("https://www.bestbuy.com/?intl=nosplash");
         page.locator("button[data-lid='hdr_signin']").click();
         page.locator(".create-account-btn").click();
+
         page.locator("#firstName").fill("Talip");
         page.locator("#lastName").fill("COLAK");
         page.locator("#email").fill("espo@gmail.com");
