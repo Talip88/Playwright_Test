@@ -1,6 +1,6 @@
-package org.example;
+package pages;
 
-public class Main {
+public class Create_Account_Page {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
