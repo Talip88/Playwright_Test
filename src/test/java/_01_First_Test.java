@@ -1,4 +1,5 @@
 import com.microsoft.playwright.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 public class _01_First_Test{
 
         @Test
+        @Disabled
         public void FirstTest() {
            try(
                Playwright playwright=Playwright.create()) {

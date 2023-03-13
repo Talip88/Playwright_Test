@@ -1,8 +1,7 @@
 import annotations.Playwright_Page;
 import com.microsoft.playwright.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountNavigationPage;
 import pages.Create_Account_Page;
 import pages.HomePage;
@@ -12,7 +11,11 @@ import services.EnvironmentReaderService;
 import javax.sql.rowset.BaseRowSet;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.util.Arrays;
+
+   @ExtendWith(TestWatcherExtention.class)
+   @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class _05_Playwright_Runner_CustomAnnotation {
 
@@ -20,7 +23,7 @@ public class _05_Playwright_Runner_CustomAnnotation {
     protected Page page;
     protected BrowserContext browserContext;
     protected Browser browser;
-    protected static Playwright playwright;
+    protected Playwright playwright;
 
     @Playwright_Page
     protected Create_Account_Page createAccountPage;
@@ -39,7 +42,7 @@ public class _05_Playwright_Runner_CustomAnnotation {
 
     @BeforeAll
 
-    public static void init(){
+    public  void init(){
         playwright=Playwright.create();
     }
 
@@ -47,8 +50,15 @@ public class _05_Playwright_Runner_CustomAnnotation {
     public void setUp(){
 
         browser=playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        browserContext= browser.newContext(new Browser.NewContextOptions().setPermissions(Arrays.asList("geolocation")));
+        browserContext= browser.newContext(new Browser.NewContextOptions().setPermissions(Arrays.asList("geolocation"))
+                .setRecordVideoDir(Paths.get("videos/"))
+                .setRecordVideoSize(1920,1680)); // Testi videoya kaydetmek için
         browserContext.setDefaultTimeout(40000);
+        browserContext.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(false)); // TRACE VİEWER
+
         page=browserContext.newPage();
         initPage(this, page);
 
@@ -75,7 +85,11 @@ public class _05_Playwright_Runner_CustomAnnotation {
 
 
     @AfterEach
-    public void tearDown(){
+    public void tearDown(TestInfo testInfo){
+        browserContext.tracing().
+                stop(new Tracing.StopOptions()
+                        .setPath(Paths.get("traces/"+testInfo.getDisplayName()
+                        .replace("()","")+ ".zip"))); // STOP THE TRACE VİEWER
         browserContext.close();
         browser.close();
     }

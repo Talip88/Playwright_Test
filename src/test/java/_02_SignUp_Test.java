@@ -5,26 +5,27 @@ import pages.AccountNavigationPage;
 
 import java.util.Arrays;
 
-public class _02_SignUp_Test extends _04_Playwright_Runner {
+public class _02_SignUp_Test extends _05_Playwright_Runner_CustomAnnotation {
 
     @Test
 
     public void SignUpTest(){
 
-        page.navigate("https://www.bestbuy.com/?intl=nosplash");
-
-
-       // page.locator("button[data-lid='hdr_signin']").click();
-       // page.locator(".create-account-btn").click();
-       //accountNavigationPage.navigateTo("Create Account");
-       // createAccountPage.createAccountPage();
-
-        accountNavigationPage.navigateTo("Sign In");
-
-        // ENUMLA KULLANIM ŞEKLİ
+        homePage.navigate();
         accountNavigationPage.navigateToWithEnum(AccountEntries.CREATE_ACCOUNT);
-        System.out.println();
+        createAccountPage.createAccountPage();
 
 
     }
+
+    public void SignUpTest2(){
+
+        homePage.navigate();
+        accountNavigationPage.navigateToWithEnum(AccountEntries.CREATE_ACCOUNT);
+        createAccountPage.createAccountPage();
+
+
+    }
+
+
 }

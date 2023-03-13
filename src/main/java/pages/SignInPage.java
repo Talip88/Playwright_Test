@@ -16,6 +16,7 @@ public class SignInPage {
     }
 
     public void signIn(String email, String password){
+        //signInPage.pause(); bu aşamada testi durdurur
         signInPage.locator(EMAIL).fill(email);
         signInPage.locator(PASSWORD).fill(password);
         signInPage.locator(SIGN_IN_BUTTON).click();
