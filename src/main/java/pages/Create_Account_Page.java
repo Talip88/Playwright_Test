@@ -23,7 +23,7 @@ public class Create_Account_Page {
     this.createAccountPage=page;
    }
 
-   public void CreateAccountPage(){
+   public void createAccountPage(){
 
        createAccountPage.locator(FIRST_NAME).fill("Talip");
        createAccountPage.locator(LAST_NAME).fill("COLAK");

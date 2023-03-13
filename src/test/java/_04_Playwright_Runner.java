@@ -1,6 +1,7 @@
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 import org.junit.jupiter.api.*;
+import pages.AccountNavigationPage;
 import pages.Create_Account_Page;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class _04_Playwright_Runner {
     protected Browser browser;
     protected static Playwright playwright;
     protected Create_Account_Page createAccountPage;
-
+    protected AccountNavigationPage accountNavigationPage;
 
     @BeforeAll
 
@@ -31,7 +32,7 @@ public class _04_Playwright_Runner {
         page=browserContext.newPage();
 
         createAccountPage=new Create_Account_Page(page);
-
+        accountNavigationPage=new AccountNavigationPage(page);
 
     }
     @AfterEach
