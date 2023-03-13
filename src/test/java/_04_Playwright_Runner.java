@@ -3,6 +3,7 @@ import com.microsoft.playwright.assertions.LocatorAssertions;
 import org.junit.jupiter.api.*;
 import pages.AccountNavigationPage;
 import pages.Create_Account_Page;
+import services.EnvironmentReaderService;
 
 import java.util.Arrays;
 
@@ -29,8 +30,8 @@ public class _04_Playwright_Runner {
 
         browser=playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         browserContext= browser.newContext(new Browser.NewContextOptions().setPermissions(Arrays.asList("geolocation")));
+        browserContext.setDefaultTimeout(40000);
         page=browserContext.newPage();
-
         createAccountPage=new Create_Account_Page(page);
         accountNavigationPage=new AccountNavigationPage(page);
 
@@ -40,5 +41,9 @@ public class _04_Playwright_Runner {
         browserContext.close();
         browser.close();
     }
+
+    protected String getProperty(String key){
+        return EnvironmentReaderService.getProperty(key);
+  }
 }
 

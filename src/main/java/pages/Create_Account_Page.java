@@ -1,5 +1,6 @@
 package pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 
@@ -35,7 +36,7 @@ public class Create_Account_Page {
                new LocatorAssertions.ContainsTextOptions().setTimeout(30000));
 
        createAccountPage.locator(PHONE).fill("09137098979797");
-       createAccountPage.locator(RECOVERY_PHONE).check();
+       createAccountPage.locator(RECOVERY_PHONE).check(new Locator.CheckOptions().setTimeout(30000)); //sadece bu işlem için timeout belirleme böyle olur
 
        assertThat(createAccountPage.locator(SUBMIT_BUTTON)).isEnabled(new LocatorAssertions.IsEnabledOptions().setTimeout(10000));
 
