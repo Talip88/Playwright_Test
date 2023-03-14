@@ -1,5 +1,4 @@
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountNavigationPage;
@@ -9,7 +8,7 @@ import services.EnvironmentReaderService;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-@ExtendWith(TestWatcherExtention.class)
+@ExtendWith(_09_TestWatcherExtention.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class _04_Playwright_Runner {

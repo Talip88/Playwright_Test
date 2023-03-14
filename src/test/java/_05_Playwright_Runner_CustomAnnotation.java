@@ -8,13 +8,12 @@ import pages.HomePage;
 import pages.SignInPage;
 import services.EnvironmentReaderService;
 
-import javax.sql.rowset.BaseRowSet;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-   @ExtendWith(TestWatcherExtention.class)
+   @ExtendWith(_09_TestWatcherExtention.class)
    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class _05_Playwright_Runner_CustomAnnotation {
